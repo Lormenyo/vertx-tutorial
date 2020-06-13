@@ -13,17 +13,19 @@ public  class VertxApp{
 //        the exchange of messages between verticles.
 
 //        deploying the verticles
-        vertx.deployVerticle(new AnotherVerticle(), new Handler<AsyncResult<String>>() {
-            @Override
-            public void handle(AsyncResult<String> stringAsyncResult) {
-                System.out.println("Another Verticle: Deployment complete");
-            }
-        });
-
         vertx.deployVerticle(new MyVerticle(), new Handler<AsyncResult<String>>() {
             @Override
             public void handle(AsyncResult<String> stringAsyncResult) {
                 System.out.println("MyVerticle: Deployment complete");
+            }
+        });
+
+        Thread.sleep(3000);
+
+        vertx.deployVerticle(new AnotherVerticle(), new Handler<AsyncResult<String>>() {
+            @Override
+            public void handle(AsyncResult<String> stringAsyncResult) {
+                System.out.println("Another Verticle: Deployment complete");
             }
         });
 //        once verticle is deployed the verticle's start method is called

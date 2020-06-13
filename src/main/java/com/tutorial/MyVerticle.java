@@ -6,6 +6,7 @@ import io.vertx.core.http.HttpServer;
 
 
 public  class MyVerticle extends AbstractVerticle {
+    private String receivedMessage;
 
 //    START METHOD VERSION 1
 //    @Override
@@ -24,9 +25,10 @@ public  class MyVerticle extends AbstractVerticle {
 //        This asynchronously tells Vertx that the verticle has been deployed
 //        succesfully.
             vertx.eventBus().consumer("anAddress", message -> {
+                    receivedMessage = message.body().toString();
         System.out.println("1 received message.body() = "
                 + message.body());
-
+            });
         HttpServer server = vertx.createHttpServer();
 
         server.requestHandler(req -> {
@@ -34,7 +36,7 @@ public  class MyVerticle extends AbstractVerticle {
         });
 
         server.listen(5000);
-    });
+
     }
 
     @Override
