@@ -20,15 +20,16 @@ public  class MyVerticle extends AbstractVerticle {
 
 //    START METHOD VERSION 2
     @Override
-    public void start(Future<Void> startFuture) {
+    public void start(Future<Void> startFuture) throws Exception {
         System.out.println("My verticle has started");
 //        This asynchronously tells Vertx that the verticle has been deployed
 //        succesfully.
+
             vertx.eventBus().consumer("anAddress", message -> {
                     receivedMessage = message.body().toString();
-        System.out.println("1 received message.body() = "
-                + message.body());
+                    System.out.println("1 received message.body() = " + message.body());
             });
+
         HttpServer server = vertx.createHttpServer();
 
         server.requestHandler(req -> {

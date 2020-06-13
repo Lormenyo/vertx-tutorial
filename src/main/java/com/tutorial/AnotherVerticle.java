@@ -1,13 +1,14 @@
 package com.tutorial;
 
 import io.vertx.core.AbstractVerticle;
-import  io.vertx.core.Vertx;
+import  io.vertx.core.eventbus.EventBus;
 import io.vertx.core.Future;
 
 
 
+
 public class AnotherVerticle extends AbstractVerticle {
-    Vertx vertx = Vertx.vertx();
+
 
     public void start(Future<Void> startFuture) throws Exception {
             System.out.println("Another verticle has started.");
